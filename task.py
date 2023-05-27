@@ -49,6 +49,7 @@ def calculate_order_total(product_quantities, gift_wrapped_products):
 
         if product_name in gift_wrapped_products:
             gift_wrap_fee_total += quantity * gift_wrap_fee
+        
 
     for rule, rule_details in discount_rules.items():
         if rule == "flat_10_discount" and subtotal > rule_details[0]:
@@ -61,6 +62,11 @@ def calculate_order_total(product_quantities, gift_wrapped_products):
     shipping_fee = calculate_shipping_fee(sum(product_quantities.values()))
 
     total = subtotal - discount_amount + gift_wrap_fee_total + shipping_fee
+    print("subtotal=",subtotal)
+    print("discount amount=",discount_amount)
+    print("shipping fee=",shipping_fee)
+    print("gift_wrap_fee_total=",gift_wrap_fee_total)
+    print("total=",total)
 
     return subtotal, discount_applied, discount_amount, gift_wrap_fee_total, shipping_fee, total
 
@@ -73,6 +79,7 @@ for product_name in catalog.keys():
     quantity = int(input(f"Enter the quantity for {product_name}: "))
     product_quantities[product_name] = quantity
 
-    gift_wrap = input(f"Is {product_name} to be wrapped as a gift? (y/n): ")
-    if gift_wrap.lower() == "y":
-        print("gift_wrapped")
+    gift_wrapp = input(f"Is {product_name} to be wrapped as a gift? (y/n): ")
+    if gift_wrapp.lower() == "y":
+        print({product_name},"wrapped")
+calculate_order_total(product_quantities,gift_wrapped_products) 
